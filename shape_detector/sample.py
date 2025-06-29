@@ -47,7 +47,7 @@ def detect_shapes_in_image(img):
 	return imgContour
 
 if __name__ == "__main__":
-	img = cv2.imread(r"D:\AI_Journey\shape_detector\test_images\shapes (1).png")
+	img = cv2.imread(r"D:\AI_Journey\shape_detector\assets\test_images\shapes.png")
 	processed_img = detect_shapes_in_image(img)
 	cv2.imshow("Shape Detection Test", processed_img)
 	cv2.waitKey(0)
