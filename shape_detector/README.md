@@ -1,170 +1,175 @@
+# Shape Detection System
 
-# 🧠 Shape Detection System
+A real-time shape detection system using OpenCV and Python that can identify various geometric shapes from camera feed or images.
 
-A real-time computer vision project using **OpenCV** and **Python** that detects basic geometric shapes from both webcam feed and static images. The system uses edge detection and contour analysis to classify shapes like **Circle**, **Rectangle**, **Square**, **Triangle**, and **Hexagon**.
+## Demo
 
----
+![Shape Detection Demo](assets/output/shape_detection_demo.mp4)
 
-## 🎥 Demo
+*Watch the system detect circles, triangles, squares, rectangles, and hexagons in real-time!*
 
-https://github.com/MOHITH2511/AI_Journey/assets/your-video-demo.mp4
-
-*Watch the system detect and label shapes in real-time using color-coded contours and bounding boxes!*
-
----
-
-## 🧪 Image Processing Pipeline
+## Image Processing Pipeline
 
 The shape detection logic involves a sequence of image preprocessing steps before classification:
 
 | Original Image | Grayscale | Blurred | Canny Edges | Final Output |
 |----------------|-----------|---------|-------------|--------------|
-| ![](output_steps/01_original.jpg) | ![](output_steps/02_gray.jpg) | ![](output_steps/03_blur.jpg) | ![](output_steps/04_canny.jpg) | ![](output_steps/05_final.jpg) |
-
----
+| ![](assets/test_images/shapes.png) | ![](assets/output/preprocessing_grayscale.jpg) | ![](assets/output/preprocessing_blur.jpg) | ![](assets/output/preprocessing_canny.jpg) | ![](assets/output/shape_detection_result.jpg) |
 
 ## ✨ Features
 
-- 🟢 Real-time shape detection via webcam
-- 🔺 Supports Circles, Triangles, Squares, Rectangles, Hexagons
-- 🎨 Color-coded contours per shape
-- 📸 Process static images or capture snapshots from video
-- 🧠 Modular and readable code structure
-- 💾 Auto-save frames and demo video
+- **Real-time Shape Detection**: Detect shapes from live camera feed
+- **Multiple Shape Recognition**: 
+  - Circles
+  - Triangles
+  - Squares
+  - Rectangles
+  - Hexagons
+- **Color-coded Output**: Each shape type has its own distinct color
+- **Image Processing**: Process static images for shape detection
+- **Modular Design**: Separate modules for video capture and shape detection
+- **DroidCam Support**: Works with DroidCam for mobile camera input
 
----
+## Installation
 
-## 📦 Tech Stack
-
+### Prerequisites
 - Python 3.7+
 - OpenCV
 - NumPy
 
----
-
-## ⚙️ Installation
-
+### Setup
 ```bash
-# Clone the repo
-git clone https://github.com/MOHITH2511/AI_Journey.git
-cd AI_Journey/shape_detector
+# Clone the repository
+git clone https://github.com/yourusername/shape_detector.git
+cd shape_detector
 
 # Install dependencies
 pip install opencv-python numpy
 ```
 
----
+## Usage
 
-## 🚀 Usage
-
-### ▶️ Run Real-time Detection
+### Live Camera Detection
 ```bash
 python video_capture.py
 ```
-- Press `q` to quit
-- Press `s` to save current frame
+- Press `'q'` to quit
+- Press `'s'` to save current frame
 
-### 🖼️ Run on Static Images
+### Image Processing
 ```bash
 python shape_detection.py
 ```
 
-### 🧪 Test Sample Images
+### Testing with Sample Images
 ```bash
 python sample.py
 ```
 
-### 🎬 Record Demo Output
+### Record Demo Video
 ```bash
 python record_demo.py
 ```
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 shape_detector/
-├── shape_detection.py         # Shape detection logic
-├── video_capture.py           # Live webcam detection
-├── sample.py                  # Static image detection
-├── record_demo.py             # Record demo output
-├── test_images/               # Test input images
+├── shape_detection.py      # Main shape detection logic
+├── video_capture.py        # Live camera processing
+├── sample.py              # Testing with sample images
+├── record_demo.py         # Demo video recording
+├── test_images/           # Sample images for testing
+│   ├── circle.jpg
 │   ├── triangle.png
 │   ├── square.png
-│   └── ...
-├── output_steps/              # Processing step images
-│   ├── 01_original.jpg
-│   ├── 02_gray.jpg
-│   ├── 03_blur.jpg
-│   ├── 04_canny.jpg
-│   └── 05_final.jpg
-├── shape_detection_demo.mp4   # Final demo output (optional)
+│   ├── rectangle.png
+│   └── hexagon.png
+├── assets/
+│   ├── test_images/       # Sample images for testing
+│   │   ├── shapes.png
+│   │   ├── circle.jpg
+│   │   ├── triangle.png
+│   │   ├── square.png
+│   │   ├── rectangle.png
+│   │   └── hexagon.png
+│   └── output/            # Generated output files
+│       ├── shape_detection_demo.mp4
+│       ├── shape_detection_result.jpg
+│       ├── preprocessing_grayscale.jpg
+│       ├── preprocessing_blur.jpg
+│       └── preprocessing_canny.jpg
 └── README.md
 ```
 
+## 🎯 How It Works
+
+### Preprocessing Pipeline
+
+1. **Grayscale Conversion**: Convert RGB image to grayscale
+2. **Gaussian Blur**: Apply blur to reduce noise
+3. **Canny Edge Detection**: Detect edges in the image
+4. **Contour Detection**: Find contours from edges
+5. **Shape Classification**: Classify shapes based on vertex count and aspect ratio
+
+### Shape Classification Logic
+
+- **Circle**: More than 7 vertices
+- **Hexagon**: Exactly 6 vertices
+- **Square**: 4 vertices with aspect ratio between 0.9-1.2
+- **Rectangle**: 4 vertices with aspect ratio outside 0.9-1.2
+- **Triangle**: Exactly 3 vertices
+
+##  Configuration
+
+You can adjust various parameters in `shape_detection.py`:
+- `PIXELS_TO_MM`: Scale factor for measurements
+- Contour area threshold (currently 50)
+- Canny edge detection parameters (50, 50)
+- Gaussian blur kernel size (7, 7)
+- Shape classification thresholds
+
+
+##  DroidCam Setup
+
+To use DroidCam as your camera source:
+
+1. Install DroidCam on your Android device
+2. Install DroidCam Client on your PC
+3. Connect both devices to the same WiFi network
+4. Update the camera source in `video_capture.py`:
+   ```python
+   cap = cv2.VideoCapture('http://YOUR_PHONE_IP:4747/video')
+   ```
+
+## Testing
+
+### Best Practices for Testing
+- Use white paper with dark shapes for best contrast
+- Ensure good lighting conditions
+- Keep shapes at a reasonable distance from camera
+- Use clean, well-drawn shapes for accurate detection
+
+### Supported Image Formats
+- JPG, PNG, BMP, and other OpenCV supported formats
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 🙏 Acknowledgments
+
+- OpenCV community for computer vision tools
+- Python community for excellent libraries
+- DroidCam for mobile camera integration
+- Contributors and testers
+
 ---
 
-## 🔬 How It Works
+**Made with ❤️ for computer vision enthusiasts**
 
-1. **Resize** and convert input to grayscale  
-2. **Apply Gaussian Blur** to reduce noise  
-3. **Canny Edge Detection** for identifying strong edges  
-4. **Contour Extraction** to find outlines of shapes  
-5. **Shape Classification**:
-   - Based on number of corners (vertices)
-   - Aspect ratio for distinguishing square vs rectangle
-6. **Visualization**:
-   - Draw colored contours
-   - Add center-aligned labels
-
----
-
-## 🧠 Customization Tips
-
-Inside `shape_detection.py`, you can tweak:
-
-- `PIXELS_TO_MM`: For real-world scaling
-- Canny thresholds: `(50, 50)` → try `(100, 150)`
-- Minimum contour area: `area_og > 50`
-- Add TTS alerts using `pyttsx3` (optional)
-
----
-
-## 📸 Sample Output
-
-![](output_steps/05_final.jpg)
-
-Shapes are highlighted with custom colors and labeled in real-time.
-
----
-
-## 🙌 Contributing
-
-Feel free to fork and improve this project!
-
-```bash
-1. Fork the repo
-2. Create your feature branch
-3. Commit your changes
-4. Push and open a Pull Request
-```
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for full text.
-
----
-
-## 👤 Author
-
-**Mohith S**  
-[GitHub](https://github.com/MOHITH2511) • [LinkedIn](https://www.linkedin.com/in/mohith-s-954aa52a0/)
-
-> This project is part of my [AI_Journey](https://github.com/MOHITH2511/AI_Journey) — learning AI & Computer Vision through building real projects.
-
----
-
-**Made with ❤️ and OpenCV by an aspiring CV engineer.**
+*This project demonstrates real-time shape detection using computer vision techniques and can be extended for various applications like object recognition, quality control, and educational purposes.*

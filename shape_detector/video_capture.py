@@ -6,10 +6,8 @@ def main():
     """
     Main function to run live camera shape detection using shape_detection.py
     """
-    # Initialize video capture (0 for default camera, you can change to 1, 2, etc. for other cameras)
     cap = cv2.VideoCapture(0)
     
-    # Check if camera opened successfully
     if not cap.isOpened():
         print("Error: Could not open camera")
         return
@@ -37,12 +35,11 @@ def main():
         cv2.putText(processed_frame, "Press 'q' to quit, 's' to save", (10, processed_frame.shape[0] - 20), 
                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
         
-        # Display the resulting frame
+        
         cv2.imshow('Live Shape Detection', processed_frame)
-        
-        # Wait for key press
+
         key = cv2.waitKey(1) & 0xFF
-        
+    
         # If 'q' is pressed, break the loop
         if key == ord('q'):
             print("Quitting...")
@@ -55,7 +52,6 @@ def main():
         
         frame_count += 1
     
-    # Release everything when job is finished
     cap.release()
     cv2.destroyAllWindows()
     print("Live Shape Detection Stopped!")

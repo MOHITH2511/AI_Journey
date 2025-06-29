@@ -74,13 +74,11 @@ def main():
 	"""
 	img = cv2.imread(r"D:\AI_Journey\shape_detector\test_images\heptagon.png")
 
-	# Process the image using the extracted function
 	processed_img = detect_shapes_in_image(img)
 
-	# Finally show the processed image
 	cv2.imshow("Shape Detection", processed_img)
 		
-	# Closing protocol
+
 	cv2.waitKey(0)
 	cv2.destroyAllWindows()
 
