@@ -47,7 +47,7 @@ def detect_shapes_in_image(img):
 			elif object_corners == 3:
 				objectType = "Triangle"
 			else:
-				objectType = "TBD"
+				objectType = "Unknown"
 
 			color = SHAPE_COLORS.get(objectType, (128, 128, 128))
 
