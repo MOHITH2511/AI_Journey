@@ -4,7 +4,7 @@ A real-time shape detection system using OpenCV and Python that can identify var
 
 ## Demo
 
-![Shape Detection Demo](assets/output/shape_detection_demo.mp4)
+![Shape Detection Demo](https://github.com/user-attachments/assets/9ea68a4e-69d1-4a66-b74c-53a1ed0ffa5f)
 
 *Watch the system detect circles, triangles, squares, rectangles, and hexagons in real-time!*
 
