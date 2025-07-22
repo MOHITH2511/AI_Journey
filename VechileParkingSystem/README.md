@@ -2,9 +2,9 @@
 
 A real-time vehicle detection, tracking, and counting system using YOLOv8 and OpenCV. Detects and counts two-wheelers and four-wheelers as they cross a defined line in video feeds.
 
-## Demo
+## Output
 
-*Detect and count vehicles in real-time from video feeds!*
+https://github.com/user-attachments/assets/2aa8198e-9667-4ed0-b01d-6979ebeb596a
 
 ## ✨ Features
 
@@ -44,12 +44,6 @@ py main.py
 ```
 - Shows a window with live detection and counters
 - Press `'q'` to quit
-
-### Save Output Video
-```bash
-py save_output_video.py
-```
-- Saves processed video with overlays to `outputs/`
 
 ## Project Structure
 ```
